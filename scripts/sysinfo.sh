@@ -1,8 +1,19 @@
-echo "=== System Information Report ==="
-echo "Hostname : $(hostname)"
-echo "OS : $(grep PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d ' '' ')"
-echo "Kernel : $(uname -r)"
-echo "--- Memory ---"
-free -h
-echo "--- Disk ---"
-df -h /
+LOGDIR="$(dirname "$0")/../logs"
+LOGFILE="$LOGDIR/sysinfo_$(date +%Y%m%d_%H%M%S).log"
+report() {
+    echo "=== System Information Report ==="
+    echo "Generated: $(date)"
+    echo "Hostname : $(hostname)"
+    echo "OS       : $(lsb_release -ds)"
+    echo "Kernel   : $(uname -r)"
+    echo "--- Uptime & CPU Load ---"
+    echo "Uptime   : $(uptime -p)"
+    echo "Load avg : $(cut -d' ' -f1-3 /proc/loadavg)"
+    echo "--- Memory ---"
+    free -h
+    echo "--- Disk ---"
+    df -h /
+}
+mkdir -p "$LOGDIR"
+report | tee "$LOGFILE"
+echo "Report saved to $LOGFILE"
