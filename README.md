@@ -13,7 +13,7 @@ This project is my DS1202 AS02 assignment. It contains `sysinfo.sh`, a shell scr
 
 ## Setup
 1. **Generate an SSH key (on my computer):**
-   `ssh-keygen -t ed25519 -C "your.email@student.pb.edu.bn"`
+   `ssh-keygen -t ed25519 -C "26FTT1124@student.pb.edu.bn"`
 2. **Copy the public key to the lab server:**
    `ssh-copy-id 26FTT1124@iib.politeknikbrunei.com`
 3. **Log in without a password:**
